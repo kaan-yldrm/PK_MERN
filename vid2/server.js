@@ -1,5 +1,6 @@
 const http = require('http')
 const fs = require('fs')
+const { each, values, keysIn, keys } = require('lodash')
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method)
@@ -46,3 +47,11 @@ const port = process.env.port || 3000;
 server.listen(port, () => {
     console.log("Online")
 })
+
+
+let numers = [29,31,32,35]
+
+each(numers, (val, keysIn) => {
+    console.log(val, keysIn)
+}
+)
