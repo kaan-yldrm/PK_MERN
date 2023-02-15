@@ -24,6 +24,19 @@ mongoose.set('strictQuery', false)
 .catch( (err) => console.log(err))
 
 
+app.get('/history', (request, response) => {
+    MYK.find()
+    .sort( {createdAt: -1} )
+    .then( (result) => {
+        response.render('history', {baslik: 'Gecmis', teklif: result})
+    })
+    
+    .catch( (err) => {
+        console.log(err)
+    })
+})
+
+/* 
     // Burada manuel bir DB yazma işlemi yapıldı
 app.get('/add' , (request, response) => {
     const asd123 = new MYK ({
@@ -50,7 +63,17 @@ app.get('/all', (request, response) => {
     })
 })
 
+app.get('/tek' , (request, response) => {
+    MYK.findById('63ece521408a3791ad00a40d')
+    .then( (result) => {
+        response.send(result)
+    })
+    .catch( (err) => {
+        console.log(err)
+    })
+}) 
 
+*/
 
 
 
