@@ -36,15 +36,21 @@ app.get('/history', (request, response) => {
     })
 })
 
-/* 
+app.get('/history/:id', (request, response) => {
+    const id = request.params.id
+    console.log(id)
+})
+
     // Burada manuel bir DB yazma işlemi yapıldı
 app.get('/add' , (request, response) => {
-    const asd123 = new MYK ({
-        title: 'Yeterlilik19',
-        short: 'MYK yeterlilik aciklamasi'
+    const newData = new MYK ({
+        title: '11UY0010-3/04 Çelik Kaynakçisi',
+        subTitle: 'B6 MAG Kaynaği',
+        date: Date()
+        
     })
 
-    asd123.save()
+    newData.save()
     .then( (result) => {
         response.send(result)
     })
@@ -53,7 +59,7 @@ app.get('/add' , (request, response) => {
     })
 })
 
-app.get('/all', (request, response) => {
+/* app.get('/all', (request, response) => {
     MYK.find()
     .then( (result) => {
         response.send(result)
@@ -71,9 +77,9 @@ app.get('/tek' , (request, response) => {
     .catch( (err) => {
         console.log(err)
     })
-}) 
+})  */
 
-*/
+
 
 
 
