@@ -6,8 +6,12 @@ const mykSchema = new schemaTik({
         type: String,
         required: true
     },
-    short: {
+    subTitle: {
         type: String,
+        required: true
+    },
+    date: {
+        type: Date,
         required: true
     }
     
