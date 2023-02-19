@@ -48,4 +48,24 @@ const dbSchema = new dbSchemaTik({
 }, { timestamps: true}
 )
 
+
+/* db.address.insertOne({
+    _id: 101,
+    teklifId: "MYK-898",
+    targetFirm: "KAUS",
+    ownedFirm: "STA",
+    discount: 10,
+    date: "20-02-2023"
+})
+
+db.employee.insertOne({
+    moduleName: "Celik Kaynak",
+    moduleLastname: "MAG",
+    amount: 5,
+    unitPrice: 3000,
+    certPrice: 300,
+    DoB: new Date('Mar 24, 2011'),
+    address: 101
+}) */
+
 //module.exports = mongoose.model('MYK', mykSchema)
