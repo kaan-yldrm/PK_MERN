@@ -1,4 +1,4 @@
-const { dir } = require('console')
+const { dir, Console } = require('console')
 const { request, response } = require('express')
 const express = require('express')
 const { dirname } = require('path')
@@ -10,6 +10,7 @@ const app = express()
 
 //------DB Schmea
 const MYK = require('./models/myk')
+const e = require('express')
 
 
 
@@ -28,7 +29,8 @@ app.get('/history', (request, response) => {
     MYK.find()
     .sort( {createdAt: -1} )
     .then( (result) => {
-        response.render('history', {baslik: 'Gecmis', teklif: result})
+        response.render('history.ejs', {baslik: 'Gecmis', teklif: result}),
+        console.log(typeof result);
     })
     
     .catch( (err) => {
@@ -36,21 +38,31 @@ app.get('/history', (request, response) => {
     })
 })
 
-app.get('/history/:id', (request, response) => {
+app.get('/history/:id' , (request, response) => {
     const id = request.params.id
-    console.log(id)
-})
 
-    // Burada manuel bir DB yazma işlemi yapıldı
-app.get('/add' , (request, response) => {
-    const newData = new MYK ({
-        title: '11UY0010-3/04 Çelik Kaynakçisi',
-        subTitle: 'B6 MAG Kaynaği',
-        date: Date()
-        
+    MYK.findById(id)
+    .then( (result) => {
+        response.render('teklifDetail.ejs', {baslik: 'Detail', details: result}),
+        console.log(result, typeof result)
+        // details burada bir Object fakat içinde Array'in tek bir verisi olduğu için MYK database şeması ile çağırmana gerek yok,
+        // database'den çektiklerini details içine kaydediyor.        
+    })
+    .catch( (err) => {
+        console.log(err)
     })
 
-    newData.save()
+
+})
+/* 
+    // Burada manuel bir DB yazma işlemi yapıldı
+app.get('/add' , (request, response) => {
+    const asd123 = new MYK ({
+        title: 'Yeterlilik19',
+        short: 'MYK yeterlilik aciklamasi'
+    })
+
+    asd123.save()
     .then( (result) => {
         response.send(result)
     })
@@ -59,7 +71,7 @@ app.get('/add' , (request, response) => {
     })
 })
 
-/* app.get('/all', (request, response) => {
+app.get('/all', (request, response) => {
     MYK.find()
     .then( (result) => {
         response.send(result)
@@ -77,13 +89,13 @@ app.get('/tek' , (request, response) => {
     .catch( (err) => {
         console.log(err)
     })
-})  */
+}) 
+
+*/
 
 
 
-
-
-// Template Engine
+// Template Engine - Render için
 app.set('view engine', 'ejs')
 
 // Middleware

@@ -9,8 +9,7 @@
         <ul>
             <% teklif.forEach(MYK => { %>
                 <li>
-                    <a href="#"><%=MYK.title%> / <%=MYK.subTitle%> / <%=MYK.date%></a>
-                    
+                    <a href="/history/<%=MYK._id%>"><%=MYK.title%> / <%=MYK.subTitle%> / <%=MYK.date%></a>
                 </li>
             <% }) %>
         </ul>
