@@ -11,8 +11,11 @@
       <p>Tarih: <%= details.createdAt %></p>
       <p>Firma: <%= details.firmName %> 
       <p>Teklif Türü: <%= details.proposalId %></p>
-      <% for(var i=0; i<45; i++) {%>
-      <p>Yeterlilik: <%= details.proposalDetails[i].unitMainQuantity %> adet <%= details.proposalDetails[(i)].unitMainName %></p>
+      <% for(var i=0; i<details.proposalDetails.length; i++) {%>
+      <p>Yeterlilik: <%= details.proposalDetails[i].unitMainQuantity %> adet 
+        <%= details.proposalDetails[i].unitMainName %> 
+        <%= details.proposalDetails[0].subUnitDetails[0].unitSubName.substring(0,2) %> ve 
+        <%= details.proposalDetails[0].subUnitDetails[1].unitSubName.substring(0,2) %> %></p>
       <% } %>
     </ul>
       </section>

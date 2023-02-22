@@ -44,7 +44,10 @@ app.get('/history/:id' , (request, response) => {
     mDB.findById(id)
     .then( (result) => {
         response.render('teklifDetail.ejs', {baslik: 'Detail', details: result}),       
-        console.log(result, typeof result)
+        console.log(result, typeof result),
+        console.log(typeof result.proposalDetails[0].subUnitDetails[0].unitSubName)
+        //for (var i=0; i < 1; i++) {console.log(typeof result.proposalDetails[i].unitMainQuantity)}
+        
         // details burada bir Object fakat içinde Array'in tek bir verisi olduğu için mDB database şeması ile çağırmana gerek yok,
         // database'den çektiklerini details içine kaydediyor.        
     })
@@ -92,6 +95,7 @@ app.get('/add' , (request, response) => {
     .catch( (err) => {
         response.send(err)
     })
+    
 })
 
 app.get('/all', (request, response) => {
@@ -105,7 +109,8 @@ app.get('/all', (request, response) => {
 })
 
 app.get('/tek' , (request, response) => {
-    mDB.findById('63ece521408a3791ad00a40d')
+    
+    mDB.findById('63f60b3c31b6a5f4bfdc727e')
     .then( (result) => {
         response.send(result)
     })
