@@ -7,9 +7,13 @@
   <%-include('./etc/nav')%>
   <section>
     <ul>
-      <p>Teklif ID: <%= details._id %></p>
-      <p>Tarih: <%= details.date %></p>
-      <p>Yeterlilik: <%= details.title %> <%= details.subTitle %></p>
+      <p>Teklif ID: <%= details.proposalId %></p>
+      <p>Tarih: <%= details.createdAt %></p>
+      <p>Firma: <%= details.firmName %> 
+      <p>Teklif Türü: <%= details.proposalId %></p>
+      <% for(var i=0; i<45; i++) {%>
+      <p>Yeterlilik: <%= details.proposalDetails[i].unitMainQuantity %> adet <%= details.proposalDetails[(i)].unitMainName %></p>
+      <% } %>
     </ul>
       </section>
 </body>

@@ -9,8 +9,8 @@ const { result } = require('lodash')
 const app = express()
 
 //------DB Schmea
-const MYK = require('./models/myk')
-const e = require('express')
+const mDB = require('./models/newSchema')
+
 
 
 
@@ -26,7 +26,7 @@ mongoose.set('strictQuery', false)
 
 
 app.get('/history', (request, response) => {
-    MYK.find()
+    mDB.find()
     .sort( {createdAt: -1} )
     .then( (result) => {
         response.render('history.ejs', {baslik: 'Gecmis', teklif: result}),
@@ -41,11 +41,11 @@ app.get('/history', (request, response) => {
 app.get('/history/:id' , (request, response) => {
     const id = request.params.id
 
-    MYK.findById(id)
+    mDB.findById(id)
     .then( (result) => {
-        response.render('teklifDetail.ejs', {baslik: 'Detail', details: result}),
+        response.render('teklifDetail.ejs', {baslik: 'Detail', details: result}),       
         console.log(result, typeof result)
-        // details burada bir Object fakat içinde Array'in tek bir verisi olduğu için MYK database şeması ile çağırmana gerek yok,
+        // details burada bir Object fakat içinde Array'in tek bir verisi olduğu için mDB database şeması ile çağırmana gerek yok,
         // database'den çektiklerini details içine kaydediyor.        
     })
     .catch( (err) => {
@@ -54,15 +54,38 @@ app.get('/history/:id' , (request, response) => {
 
 
 })
-/* 
+
     // Burada manuel bir DB yazma işlemi yapıldı
 app.get('/add' , (request, response) => {
-    const asd123 = new MYK ({
-        title: 'Yeterlilik19',
-        short: 'MYK yeterlilik aciklamasi'
+    const newNew = new mDB ({
+        firmName: 'HAUS',
+        about: 'MYK Fiyat Teklifi',
+        proposalId: 'MYK-1234',
+        proposalDetails: 
+        [{
+            unitID: '1',
+            unitMainName: '11UY0010-3/04 Çelik Kaynakçisi',
+            unitMainQuantity: 3,
+            unitPrice: 300,
+            subUnitDetails: 
+            [
+            {
+                unitSubId: 2,
+                unitSubName: 'B1 Elektrotla Ark Kaynagi',
+                unitSubPRice: 1650
+            },
+            {
+                unitSubId: 3,
+                unitSubName: 'B1 Elektrotla Ark Kaynagi',
+                unitSubPRice: 1650
+            }          
+            ]
+    }],
+        proposalPrice: 10800,
+        proposalDiscount: 0
     })
 
-    asd123.save()
+    newNew.save()
     .then( (result) => {
         response.send(result)
     })
@@ -72,7 +95,7 @@ app.get('/add' , (request, response) => {
 })
 
 app.get('/all', (request, response) => {
-    MYK.find()
+    mDB.find()
     .then( (result) => {
         response.send(result)
     })
@@ -82,7 +105,7 @@ app.get('/all', (request, response) => {
 })
 
 app.get('/tek' , (request, response) => {
-    MYK.findById('63ece521408a3791ad00a40d')
+    mDB.findById('63ece521408a3791ad00a40d')
     .then( (result) => {
         response.send(result)
     })
@@ -91,7 +114,7 @@ app.get('/tek' , (request, response) => {
     })
 }) 
 
-*/
+
 
 
 

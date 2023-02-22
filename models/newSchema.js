@@ -1,71 +1,75 @@
 const mongoose = require('mongoose')
-const dbSchemaTik = mongoose.Schema
+const dbSchema = mongoose.Schema
 
-const dbSchema = new dbSchemaTik({
-    date: {
+const brandNewSchema = new dbSchema({ 
+    
+    firmName: { // firma adı
+        type: String,
+        required: true
+    },
+    about: { // myk veya pk teklifi
+        type: String,
+        required: true
+    },
+    proposalId: { // teklif id'si
+        type: String,
+        required: true
+    },
+    proposalDetails: {  // teklif detayı array'i
+        type: Array,
+        required: true,
+        categoryID: {   // Meslek id'si
+            type: Number,
+            required: true
+        },
+        unitID: {       // Meslek birimi id'si
+            type: Number,
+            required: true
+        },
+        unitMainName: {     // Meslek birimi adı
+            type: String,
+            required: true
+        },
+        unitMainQuantity: { // Meslek ana birimi fiyatı
+            type: Number,
+            required: true
+        },
+        unitPrice: {    // Meslek birimi fiyatı
+            type: Number,
+            required: true
+        },
+        subUnitDetails:{
+            type: Array,
+            required: false,
+            unitSubId: {     // Meslek alt birimi adı
+                type: Number,
+                required: false
+            },
+            unitSubName: {     // Meslek alt birimi adı
+                type: String,
+                required: false
+            },
+            unitSubPrice: { // Meslek alt birimi fiyatı
+                type: Number,
+                required: false
+            }        
+        }
+    },
+    proposalPrice: {    // Teklif toplam tutarı
+        type: Number,
+        required: true
+    },
+    proposalDiscount: {     // Teklif iskonto miktarı
+        type: Number,
+        required: false
+    },
+    issuedDate: {   // oluşturma tarihi
         type: Date,
-        required: true
-    }, // always should be TODAY
-    targetId: {
-        type: String,
-        required: true
-    }, // Teklif ID'si
-    targetFirm: {
-        type: String,
-        required: true
-    }, // Teklif yapılan firma
-    ownedFirm: {
-        type: String,
-        required: true
-    }, // Teklifi veren firma
-    moduleName: {
-        type: String,
-        required: true
-    }, // Kalem adı
-    moduleLastname: {
-        type: String,
-        required: false
-    }, // Kalem ek adı
-    amount: {
-        type: Number,
-        required: true
-    }, // Adet miktarı
-    unitPrice: {
-        type: Number,
-        required: true
-    },
-    certPrice: {
-        type: Number,
-        required: false
-    },
-    discount: {
-        type: Number,
         required: false
     },
 
-
-
-}, { timestamps: true}
+},
+{ timestamps: true}
 )
 
-
-/* db.address.insertOne({
-    _id: 101,
-    teklifId: "MYK-898",
-    targetFirm: "KAUS",
-    ownedFirm: "STA",
-    discount: 10,
-    date: "20-02-2023"
-})
-
-db.employee.insertOne({
-    moduleName: "Celik Kaynak",
-    moduleLastname: "MAG",
-    amount: 5,
-    unitPrice: 3000,
-    certPrice: 300,
-    DoB: new Date('Mar 24, 2011'),
-    address: 101
-}) */
-
-//module.exports = mongoose.model('MYK', mykSchema)
+module.exports = mongoose.model('mDB', brandNewSchema)

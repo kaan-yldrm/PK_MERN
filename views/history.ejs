@@ -4,12 +4,13 @@
     <%-include('./etc/header')%>
 </head>
 <body>
+    <%-include('./etc/nav')%>
     <section>
         <h1>Gecmis Teklifler</h1>
         <ul>
-            <% teklif.forEach(MYK => { %>
+            <% teklif.forEach(mDB => { %>
                 <li>
-                    <a href="/history/<%=MYK._id%>"><%=MYK.title%> / <%=MYK.subTitle%> / <%=MYK.date%></a>
+                    <a href="/history/<%=mDB._id%>"><%=mDB.proposalId%> / <%=mDB.firmName%> / <%=mDB.proposalPrice%></a>
                 </li>
             <% }) %>
         </ul>
