@@ -14,8 +14,8 @@
       <% for(var i=0; i<details.proposalDetails.length; i++) {%>
       <p>Yeterlilik: <%= details.proposalDetails[i].unitMainQuantity %> adet 
         <%= details.proposalDetails[i].unitMainName %> 
-        <%= details.proposalDetails[0].subUnitDetails[0].unitSubName.substring(0,2) %> ve 
-        <%= details.proposalDetails[0].subUnitDetails[1].unitSubName.substring(0,2) %> %></p>
+        <%= details.proposalDetails[i].subUnitDetails[0].unitSubName.substring(0,2) %> ve 
+        <%= details.proposalDetails[i].subUnitDetails[1].unitSubName.substring(0,2) %> %></p>
       <% } %>
     </ul>
       </section>

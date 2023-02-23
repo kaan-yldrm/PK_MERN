@@ -63,28 +63,44 @@ app.get('/add' , (request, response) => {
     const newNew = new mDB ({
         firmName: 'HAUS',
         about: 'MYK Fiyat Teklifi',
-        proposalId: 'MYK-1234',
+        proposalId: 'MYK-5678',
         proposalDetails: 
         [{
-            unitID: '1',
-            unitMainName: '11UY0010-3/04 Çelik Kaynakçisi',
+            unitID: '2',
+            unitMainName: '13UY0145-3/04 Endüstriyel Taşimaci',
             unitMainQuantity: 3,
             unitPrice: 300,
             subUnitDetails: 
             [
             {
-                unitSubId: 2,
-                unitSubName: 'B1 Elektrotla Ark Kaynagi',
-                unitSubPRice: 1650
+                unitSubId: 1,
+                unitSubName: 'B1 Forklift Kullanimi',
+                unitSubPRice: 1880
             },
             {
-                unitSubId: 3,
-                unitSubName: 'B1 Elektrotla Ark Kaynagi',
-                unitSubPRice: 1650
+                unitSubId: 2,
+                unitSubName: 'B2 Elek. Transpalet Kullanimi',
+                unitSubPRice: 1700
+            
             }          
             ]
-    }],
-        proposalPrice: 10800,
+        },
+        {
+            unitID: '3',
+            unitMainName: '13UY0145-3/04 Endüstriyel Taşimaci',
+            unitMainQuantity: 5,
+            unitPrice: 300,
+            subUnitDetails: 
+            [
+            {
+                unitSubId: 1,
+                unitSubName: 'B1 Forklift Kullanimi',
+                unitSubPRice: 1880
+            }        
+            ]
+        }
+        ],
+        proposalPrice: 31040,
         proposalDiscount: 0
     })
 
