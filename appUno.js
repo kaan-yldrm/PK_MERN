@@ -15,7 +15,7 @@ const mDB = require('./models/newSchema')
 
 
 //------MONGODB-------
-const dbURL = 'mongodb+srv://Henlo1here:S3aX7fAaEBqsPGnp@henlo.2m8afdg.mongodb.net/?retryWrites=true&w=majority'
+const dbURL = ""
 mongoose.set('strictQuery', false)
 .connect(dbURL)
 .then( (result) => {
